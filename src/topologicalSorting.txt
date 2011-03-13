@@ -1,0 +1,8 @@
+//@begin@
+naredi delovno kopijo grafa
+poišèi vozlišèe brez vhodnih povezav
+èe takega vozlišèe ni, je odkrit cikel - zakljuèi algoritem
+sicer vozišèe oznaèi z naslednjo oznako in ga odstrani iz grafa
+èe je to zadnje vozlišèe prenesi oznake na prvotni graf in zakljuèi algoritem
+sicer pojdi na 1
+//@end@

@@ -1,0 +1,4 @@
+Izberi zaèetno vozlišèe
+Preèkaj poljubno povezavo, z izjemo mostu, ki ga izberemo le, èe ni boljše izbire
+Izbrano povezavo odstrani, èe je bil odstranjen most, pa odstrani še vse toèke, ki so ostale izolirane
+Konèaj, ko ni veè povezav, sicer ponovi

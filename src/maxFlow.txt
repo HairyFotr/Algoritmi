@@ -1,0 +1,10 @@
+//@begin@
+vse pretoke nastavi na 0
+oznaèi izvor
+iz oznaèenih vzemi poljubno vozlišèe in ga zaznamuj kot obiskanega
+oznaèi vse neobiskane sosede, do katerih obstaja nezasièena povezava
+èe je poveèanje(ali zmanjšanje) toka po povezavi, po kateri smo prišli v trenutno vozlišèe, manjše od shranjenega, ga shrani
+èe obstajajo oznaèena vozlišèa in ponor še ni oznaèen, pojdi na 2
+èe je ponor oznaèen pojdi po poti od ponora nazaj in popravi pretoke s shranjenim in pojdi na 1
+èe ni veè oznaèenih vozlišè, zakljuèi algoritem
+//@end@
