@@ -8,7 +8,7 @@ public static boolean isFib(int a, int k) {
     // tabela zadnjih k vrednosti zaporedja (na zaèetku 0,0,...,0,1)
     int[] store = new int[k];
     store[k-1]=1;
-
+    // vsota èlenov
     int sum=1;
 
     // kaže na mesto v tabeli, ki ga bomo prepisali
@@ -22,7 +22,7 @@ public static boolean isFib(int a, int k) {
         pos++;
     }
     
-    return (sum==a); // a je èlen zaporedja
+    return (sum==a); // ali je a èlen zaporedja
 }
 //@end@ 
     public static void main(String[] args) { 

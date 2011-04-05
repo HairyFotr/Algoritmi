@@ -109,7 +109,7 @@
 \vfill
 \parbox{7.5cm}{
 \begin{center}
-\includegraphics[width=0.15\textwidth]{./CC}\\[6pt]
+\includegraphics[width=0.15\textwidth]{./by-nc-sa}\\[6pt]
 
 This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 3.0 Unported License
 \end{center}
@@ -121,36 +121,37 @@ This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAl
 \pagebreak
 \chapter{Pregled metod reševanja}
 \section{Deli in vladaj}
-Pri metodi deli in vladaj problem delimo na manjše podprobleme, dokler jih ne znamo rešiti direktno, nato pa te delne rešitve sestavljamo v končno rešitev. Navadno je take algoritme najlaže implementirati rekurzivno.\\
+Pri metodi deli in vladaj problem delimo na podprobleme, dokler jih ne znamo rešiti direktno, nato pa te delne rešitve sestavimo v končno rešitev. Navadno je take algoritme najlaže implementirati rekurzivno.\\
  \\
 Nekaj problemov, ki jih rešujemo s to metodo:
 \begin{items}
-	\item Urejanje (s porazdelitvami, z zlivanjem)
-	\item Učinkovito iskanje v urejenem seznamu (binarno iskanje)
+	\item Urejanje (QuickSort, MergeSort)
+	\item Iskanje v urejenem seznamu (binarno iskanje)
 	\item Množenje števil (Karatsubov algoritem)
 	\item Množenje matrik (Strassenov algoritem)
 \end{items}
 
 \section{Dinamično programiranje}
-Dinamično programiranje je metoda, pri kateri rešujemo manjše podprobleme in jih nato sestavljamo v večje, dokler ne sestavimo končne rešitve. Če so podproblemi odvisni med seboj je dinamično programiranje, v primejavi s metodo deli in vladaj, prostorsko zahtevnejše (saj shranjujemo vse vmesne rešitve), a časovno učinkovitejše (ker tako podprobleme rešujemo le enkrat).
-
-Izraz dinamično programiranje je skoval Richard Bellman že pred računalniškim programiranjem, ko se je izraz matematično programiranje uporabljal kot sopomenka optimizaciji.\\
+Dinamično programiranje je v osnovi podobno metodi deli in vladaj, saj podobno problem delimo na podprobleme in nato sestavljamo končno rešitev, s to razliko, da shranjujemo vmesne rezultate. Če so podproblemi odvisni med seboj, ali na delih celo enaki, je dinamično programiranje, v primejavi z metodo deli in vladaj hitrejše, a prostorsko zahtevnejše.\\
+%
+%Izraz dinamično programiranje je skoval Richard Bellman že pred računalniškim programiranjem, ko se je izraz matematično programiranje uporabljal kot sopomenka optimizaciji.\\
  \\
 Nekaj problemov, ki jih rešujemo s to metodo:
 \begin{items}
 	\item Izračun členov Fibonaccijevega zaporedja
-	\item Reševanje igre hanojski stolpi
+	\item Reševanje igre Hanojski stolpi
 	\item Neomejeni problem nahrbtnika
 	%\item Dedno anagramska razbitja
 \end{items}
 
 \section{Požrešna metoda}
 %\url{http://en.wikipedia.org/wiki/Algorithm#By_design_paradigm}
-Pri požrešni metodi se, vedno ko imamo možnost izbire, odločimo za lokalno najboljšo izbiro in (za razliko od dinamičnega programiranja) ne hranimo prejšnjih odločitev, ter se ne vračamo nazaj.\\
+Pri požrešni metodi se, kadar imamo na voljo večih vej, odločimo za lokalno najboljšo in pri tem ne hranimo prejšnjih odločitev, ter se ne vračamo nazaj.\\
  \\
  \\
 Nekaj problemov, ki jih rešujemo s to metodo:\\
-Pri NP-polnih problemih s požrešnimi algoritmi ne dobimo vedno optimalne rešitve, se ji pa navadno zelo približamo, če uporabljamo pametne hevristike:
+%Pri NP-polnih problemih s požrešnimi algoritmi ne dobimo vedno optimalne rešitve, se ji pa navadno zelo približamo, če uporabljamo pametne hevristike:
+Pri težkih problemih s požrešnimi algoritmi v splošnem ne dobimo optimalne rešitve, se ji pa približamo, če uporabljamo pametne hevristike:
 \begin{items}
 	\item Problem trgovskega potnika
 	\item Neomejeni problem nahrbtnika
@@ -165,17 +166,17 @@ Obstaja pa precej problemov, kjer lokalno najbolša izbira vodi tudi do končne 
 
 %%ali si razveji in omeji zasluži svoj podnaslov... in kaj je sploh razlika.
 \section{Sestopanje}
-Sestopanje je malo bolj pametno preiskovanje celotnega prostora rešitev, kjer s pomočjo hevristik odrežemo določene veje drevesa rešitev, če ugotovimo da tam zagotovo ni rešitve. V najslabšem primeru lahko metoda še vedno preišče celoten prostor rešitev.\\
+Sestopanje je v osnovi preiskovanje celotnega prostora rešitev, a s pomočjo hevristik lahko včasih odrežemo določene veje, če ugotovimo da tam zagotovo ni rešitve. V najslabšem primeru lahko metoda vseeno preišče celoten prostor rešitev.\\
  \\
 Nekaj problemov, ki jih rešujemo s to metodo:
 \begin{items}
-	\item Problem skakačevega obhoda
-	\item Problem popolnega pokritja (npr. izdelava križanke, problem osmih dam, \dots)
 	\item Problem trgovskega potnika
+	\item Problem popolnega pokritja (npr. izdelava križanke, problem osmih dam, \dots)
+	\item Problem skakačevega obhoda
 \end{items}
 
 \section{Linearno programiranje}
-Linearno programiranje je nastalo že precej pred računalniškim programiranjem in je optimizacijska metoda za iskanje maksimalne vrednosti kriterijske funkcije, glede na omejitve podane z linearnimi neenačbami.\\
+Linearno programiranje je nastalo že pred računalniškim programiranjem in je metoda za iskanje največje vrednosti kriterijske funkcije, glede na omejitve, podane z linearnimi neenačbami.\\
 \begin{comment}
  \\
 Primer:\\
@@ -213,13 +214,13 @@ Kriterijska funkcija:
 Sedaj imamo na levi strani neenačb linearno kombinacijo porabe glede na izbrano žito, na desni kmetove omejitve, v kriterijski funkciji pa kmetov dobiček, ki ga želimo maksimizirati.
 \end{comment}
 \subsection{Simpleksni algoritem}
-Algoritem rešuje linearne programe tako, da se sprehaja po ogljiščih konveksne poliederske množice(KPM), ki jo tvori presek danih neenačb (v 2D je KPM konveksen poligon, v 3D polieder, \dots). Pri sprehanjanu se vedno premikamo le proti boljšim rešitvam, ko enkrat to ni več mogoče smo dosegli maksimum in algoritem zaustavimo.
+Algoritem rešuje linearne programe tako, da se sprehaja po ogljiščih konveksne poliederske množice (KPM), ki jo tvori presek danih neenačb (v 2D je KPM konveksen poligon, v 3D polieder, \dots). Pri sprehajanju se vedno premikamo le proti boljšim rešitvam, če to v nekem ogljišču ni možno, pa smo dosegli maksimum in se algoritem ustavi.
 
 Predpostavlja se, da začenjamo iz koordinatnega izhodišča ($\forall x_i = 0$), kadar pa izhodišče ne pripada KPM, koordinatni sistem ustrezno preslikamo (premik, vrtenje, zrcaljenje, \dots).
 %Write only what you know.. :D
 %Če ne najdemo ustrezne preslikave, lahko poiščemo neko nek presek enačb, ki je ogljišče KPM (), ali pa lik razrežemo in algoritem poženemo na delčkih.
 
-Časovna zahtevnost algoritma je v najslabšem primeru eksponentna, v praksi pa se algoritem dobro obnese, saj se sprehaja le po ogljiščih KPM in zazna, ko prispe v maksimum kriterijske funkcije.
+%Časovna zahtevnost algoritma je v najslabšem primeru eksponentna, v praksi pa se algoritem dobro obnese, saj se sprehaja le po ogljiščih KPM in zazna, ko prispe v maksimum kriterijske funkcije.
 % \\
 %%TODO: Psevdokoda/Implementacija :P
 
@@ -227,8 +228,9 @@ Predpostavlja se, da začenjamo iz koordinatnega izhodišča ($\forall x_i = 0$)
 
 \section{Praštevila}
 Praštevila so naravna števila, ki so deljiva le z $1$ in sama s seboj. Ostalim naravnim številom, razen $1$, pravimo sestavljena števila, saj jih je moč sestaviti kot produkt praštevil.\\
-
-Kot je dokazal že Evklid\cite{elementi}, obstaja neskončno praštevil. Uporabimo preprost dokaz z protislovjem - predpostavimo, da imamo množico števil, ki vsebuje vsa praštevila $P = \{2,3,5,\dots,p\}$. Če sedaj vsa praštevila zmožimo in prištejemo $1$, dobimo število, ki ga ne deli nobeno izmed teh praštevil. Ker obstajajo le praštevila in sestavljena števila, sklepamo, da je dobljeno število lahko le praštevilo, ali pa število sestavljeno iz praštevil, ki jih ni v naši začetni množici. Oboje pa nas privede v protislovje s predpostavko, saj smo našli še eno praštevilo ali pa dokazali, da druga praštevila zunaj množice obstajajo.\\
+\\
+Kot je dokazal že Evklid\cite{elementi}, obstaja neskončno praštevil. Uporabimo preprost dokaz z protislovjem.
+Predpostavimo, da imamo množico števil, ki vsebuje vsa praštevila $P = \{2,3,5,\dots,p\}$. Če sedaj vsa praštevila zmožimo in na koncu prištejemo $1$, dobimo število, ki ga ne deli nobeno izmed teh praštevil. Ker obstajajo le praštevila in števila sestavljena iz prafaktorjev, lahko sklepamo, da je to število novo praštevilo, ki ga ni v naši začetni množici, to pa je v protislovju s predpostavko. V resnici ni nujno, da je dobljeno število praštevilo -- druga možnost je, da obstaja še kako praštevilo, ki je manjše od zmnožka vseh praštevil, ki smo jih zajeli v množici $P$.\\
 
 \[\begin{array}{ccccc}
 (2)+1 &=& 3& &\mbox{(je praštevilo)}\\
@@ -240,7 +242,7 @@ Kot je dokazal že Evklid\cite{elementi}, obstaja neskončno praštevil. Uporabi
 \dots & & \dots& & \dots \\
 \end{array}\]
 \subsection{Preprosti algoritem za ugotavljanje praštevilskosti} 
-Algoritem preveri, ali je parameter $a$ deljiv s katerim izmed naravnih števil v intervalu $\left[2, \sqrt{a}\right]$ in če takega števila ni, je $a$ praštevilo. Razlog, zaradi katerega lahko praštevilskost preverimo s tem intervalom (kljub temu, da bi tudi $\frac{a}{2}$ lahko delil $a$), leži v tem, da če je parameter sestavljen, je največji možen razcep na prafaktorje $\sqrt{a}*\sqrt{a}$.
+Algoritem preveri, ali je parameter $a$ deljiv s katerim izmed naravnih števil v intervalu $\left[2, \sqrt{a}\right]$ in če takega števila ni, zaključi, da je $a$ praštevilo. Razlog, zaradi katerega lahko praštevilskost preverimo s tem intervalom (kljub temu, da bi tudi $\frac{a}{2}$ lahko delil $a$), leži v tem, da če je parameter sestavljen, je največji možen razcep na prafaktorje $\sqrt{a}*\sqrt{a}$.
 \lstinputlisting[linerange=begin-end, title={Preprosti algoritem za preverjanje praštevilskosti}]{./src/isPrime.java}
 Algoritem je moč nekoliko pohitriti tako, da že pred zanko preverimo ostanek pri deljenju z $2$, nato lahko zanko začnemo s $3$ in števec v vsaki iteraciji povečamo za $2$.\\
 % \\
@@ -252,19 +254,19 @@ Algoritem je moč nekoliko pohitriti tako, da že pred zanko preverimo ostanek p
 %deli s praštevili dokler gre, s 3, s 5, s 7...
 
 \section{Največji skupni delitelj in najmanjši skupni večkratnik}
-Največji skupni delitelj, oziroma angleško greatest common divisor (GCD), je največje naravno število, ki deli vsa dana števila.
+Največji skupni delitelj (angl. greatest common divisor (GCD)), je največje naravno število, ki deli vsa dana števila.
 %Produkt skupnih prafaktorjev, ali
 \subsection{Evklidov algoritem}
 Evklidov algoritem za izračun GCD je verjetno eden najstarejših algoritmov, ki so še vedno v uporabi. Prvi ohranjen zapis je v Evklidovih Elementih\cite{elementi}, že prej pa naj bi bil znan Pitagorejcem. \\
-
-Algoritem temelji na ugotovitvi, da se GCD ne spremeni, če od večjega števila odštejemo manjšega. Če to odštevanje ponavljamo, dokler ena izmed spremenljivk ne doseže 0, je vrednost druge spremenljivke ravno GCD. Kasneje so ugotovili, da isto velja tudi za ostanek po deljenju, le da je potrebno manj korakov za izračun, zato raje uporabljamo ta način.
+\\
+Algoritem temelji na ugotovitvi, da se GCD ne spremeni, če od večjega števila odštejemo manjšega. Če to odštevanje ponavljamo, dokler ena izmed spremenljivk ne doseže 0, je vrednost druge spremenljivke ravno GCD. Kasneje so ugotovili, da isto velja tudi za ostanek po deljenju, le da je potrebno precej manj korakov za izračun, zato raje uporabljamo ta način.
 
 \lstinputlisting[linerange=begin-end, title={Evklidov algoritem za iskanje največjega skupnega delitelja}]{./src/GCD.java}
 \subsection{Najmanjši skupni večkratnik}
-Najmanjši skupni večkratnik je najmanjše naravno število, ki je večkratnik danih naravnih števil.\\
+Najmanjši skupni večkratnik (angl. least common multiple (LCM)) je najmanjše naravno število, ki je večkratnik danih naravnih števil.\\
 %Produkt prafaktorjev, ki nastopajo v enem ali obeh številih,ali\\
 Lahko ga izračunamo iz največjega skupnega delitelja po preprosti formuli:
-\[{a*b \over \operatorname{gcd}(a,b)}\]
+\[ \operatorname{lcm(a,b)}={a*b \over \operatorname{gcd}(a,b)}\]
 %\lstinputlisting[linerange=begin-end, title={Algoritem za iskanje najmanjšega skupnega večkratnika}]{./src/LCM.java}
 
 \begin{comment}
@@ -281,18 +283,19 @@ Za tuji števili a in b velja:\\
 %Ideja za preprost algoritem: Razcep na praštevila, odštevanje 1 in množenje
 \end{comment}
 \section{Fibonaccijevo zaporedje}
-Fibonacci je bil eden bolj znanih srednjeveških matematikov, ki je med drugim, pisal tudi o zaporedju, ki je kasneje dobilo ime po njem\cite{liberabaci}. Zaporedje je predstavil na primeru idealizirane rasti populacije zajcev.
-
-Recimo, da vsak par zajcev živi dve sezoni in vsako sezono ustvari en par potomcev. Imamo neko pokrajino, kjer zajcev še ni in začnemo z enim mladim parom in nato vsako sezono preštejemo nove pare. Čez eno sezono imamo en nov par, v drugi sezoni imajo potomce prva in druga generacija, tako da imamo dva nova para, hkrati pa prva generacija odmre. Naslednjo sezono imamo tri nove pare, umre pa druga generacija. Preostali pari ustvarijo pet novih parov, umre tretja generacija\dots vidimo, da je število potomcev v resnici enako velikosti zadnjih dveh generacij.
-
+Fibonacci je eden izmed najbolj znanih srednjeveških matematikov, ki je, med drugim, pisal tudi o zaporedju, ki je kasneje dobilo ime po njem\cite{liberabaci}. Zaporedje je predstavil na primeru idealizirane rasti populacije zajcev:\\
+Recimo, da vsak par zajcev živi dve sezoni in vsako sezono ustvari en par potomcev. Imamo neko pokrajino, kjer zajcev še ni in začnemo z enim mladim parom in nato vsako sezono preštejemo nove pare. Čez eno sezono imamo en nov par, v drugi sezoni imajo potomce prva in druga generacija, tako da imamo dva nova para, hkrati pa prva generacija odmre. Naslednjo sezono imamo tri nove pare, umre pa druga generacija. Preostali pari ustvarijo pet novih parov, umre tretja generacija\dots\\
+Vidimo, da je število potomcev v resnici enako velikosti zadnjih dveh generacij.\\
+\\
 Prvih nekaj členov Fibonaccijevega zaporedja je tako: $0,1,1,2,3,5,8,13,21,34,55,89,144,\dots$, kar lahko zapišemo z rekurzivno enačbo:\[	F(n)=
 	\left\{
-		\begin{matrix}
-			0 && ; && n=0;\\
-			1 && ; && n=1;\\
-			F(n-1)+F(n-2) &&; && n>=2.
-		\end{matrix}
+		\begin{array}{ccl}
+			0 &;& n=0,\\
+			1 &;& n=1,\\
+			F(n-1)+F(n-2) &;& n>=2.
+		\end{array}
 	\right. \]
+\\
 Kvocient členov Fibonaccijevega zaporedja konvergira proti zlatemu rezu. To je moč prikazati tudi grafično, če člene zaporedja narišemo kot kvadrate ustreznih velikosti - dobimo namreč pravokotnik, katerega razmerje stranic se z dodajanjem novih členov približuje zlatemu rezu:
 %kako bi sliko bolj lepo poravnal,
 %oz. kako se dela vertical align
@@ -317,7 +320,7 @@ Kvocient členov Fibonaccijevega zaporedja konvergira proti zlatemu rezu. To je 
 	\includegraphics[width=50mm]{Fibonacci}
 \end{tabular}
 \end{center}
-Ena izmed posplošitev zaporedja so t.i. Fibonaccijeva zaporedja višjih redov. Če spet vzamemo Fibonaccijevo zgodbo z zajci, zaporedje višjega reda pomeni le, da zajci živijo $k$ let, namesto dveh. Pri zaporedju $k$-tega reda, torej seštejemo prejšnjih $k$ členov zaporedja.\\
+Možna posplošitev zaporedja je t.i. Fibonaccijevo zaporedje višjega reda. Če spet vzamemo Fibonaccijevo zgodbo z zajci, zaporedje višjega reda pomeni le, da zajci živijo $k$ let, namesto dveh. Pri zaporedju $k$-tega reda, torej seštejemo prejšnjih $k$ členov zaporedja.\\
  \\
 Rekurzivno enačbo za Fibonaccijevo zaporedje $k$-tega reda zapišemo zapišemo kot:\\
 \[	F(n)=
@@ -389,9 +392,9 @@ Hanojski stolpi je igra, ki jo sestavljajo tri palice in nekaj diskov različnih
 \end{center}
 
 \subsection{Najmanjše število premikov glede na število diskov}
-Če hočemo iz začetnega položaja premakniti prvi(zgornji) disk, to lahko storimo z enim premikom, če pa želimo premakniti disk pod njim, moramo najprej premakniti prvega, šele nato drugega. Po teh dveh premikih je za nadaljevanje igre potrebno eno palico sprostiti, kar dosežemo s premikom prvega diska na drugega - skupaj trije premiki. Če bi iz začetnega položaja želeli premakniti tretji disk, bi najprej s tremi premiki premaknili prva dva diska na tretjo palico, tretji disk na drugo palico, potem pa spet s tremi premiki prvi in drugi disk na drugo palico - skupaj sedem premikov. Za premik četrtega diska pa bi najprej premaknili prve tri, nato četrtega in prve tri na četrtega - petnajst premikov.\\
- \\
-Algoritem za izračun najmanjšega števila premikov je zelo preprost, ga je pa bolje kot z očitno rekurzijo, implementirati z uporabo dinamičnega programiranja:
+Če hočemo iz začetnega položaja premakniti prvi(zgornji) disk, to lahko storimo z enim premikom, če pa želimo premakniti disk pod njim, moramo najprej premakniti prvega, šele nato drugega. Po teh dveh premikih je za nadaljevanje igre potrebno eno palico sprostiti, kar dosežemo s premikom prvega diska na drugega - skupaj trije premiki. Če bi iz začetnega položaja želeli premakniti tretji disk, bi najprej s tremi premiki premaknili prva dva diska na tretjo palico, tretji disk na drugo palico, potem pa spet s tremi premiki prvi in drugi disk na drugo palico - skupaj sedem premikov. Za premik četrtega diska pa bi najprej premaknili prve tri, nato četrtega in prve tri na četrtega - petnajst premikov.%\\
+% \\
+%Algoritem za izračun najmanjšega števila premikov je zelo preprost, ga je pa bolje kot z očitno rekurzijo, implementirati z uporabo dinamičnega programiranja:
 \lstinputlisting[linerange=begin-end, title={Algoritem za izračun najmanšega števila premikov pri igri Hanojski stolpi}]{./src/towersOfHanoiMoves.java}
 
 \subsection{Rekurzivni algoritem za reševanje igre Hanojski stolpi}
@@ -408,16 +411,16 @@ Graf formalno podamo kot par vozlišč $V$ in povezav $E$ med vozlišči: $G=\la
 
 \section{Eulerjev in Hamiltonov graf}
 \subsection{Eulerjev graf}
-Graf je Eulerjev, kadar vsebuje Eulerjev cikel, torej tak sprehod, ki vsako povezavo uporabi natanko enkrat in se na koncu vrne v izhodišče. Multigraf je nadgradnja navadnjih grafov s tem, da dovolimo več vzporednih povezav med dvema vozliščema in dovolimo tudi povezave vozlišč samih vase. Tudi multigraf je lahko Eulerjev.
+Graf je Eulerjev, kadar vsebuje Eulerjev cikel -- tak sprehod, ki vsako povezavo uporabi natanko enkrat in se na koncu vrne v izhodišče. Multigraf je nadgradnja navadnih grafov s tem, da dovolimo več vzporednih povezav med dvema vozliščema in dovolimo tudi povezave vozlišč samih vase. Tudi multigraf je lahko Eulerjev.
 %\subsubsection{Fleuryjev algoritem za iskanje Eulerjevega cikla}
 \lstinputlisting[language=GNUplot, firstnumber=0, title={Psevdokoda Fleuryjevega algoritma za iskanje Eulerjevega cikla}]{./src/Fleury.txt}
 \subsection{Hamiltonov graf}
-Graf je Hamiltonov, kadar vsebuje Hamiltonov cikel, torej tak sprehod, ki vsako vozlišče obišče natanko enkrat in se na koncu vrne v izhodišče.
+Graf je Hamiltonov, kadar vsebuje Hamiltonov cikel -- tak sprehod, ki vsako vozlišče obišče natanko enkrat in se na koncu vrne v izhodišče.
 
 \section{Iskanje maksimalnega pretoka skozi graf}
 Predstavljamo si, da imamo nek vir tekočine, ki teče v razvejan sistem cevi, v katerem ima vsaka cev določen maksimalen pretok tekočine ($c_{i,j}$), ki ga lahko prenese med dvema točkama. Vsaka cev se steka v neko točko in iz vsake točke lahko naprej vodi več cevi. Tu seveda velja pravilo, da iz vsakega vozlišča odteka enako tekočine kot vanjo pride (tekočina se ne more nikjer zadrževati). Sistem ima poleg izvora tekočine tudi t.i ponor, kamor se tekočina na koncu izteka. Zanima nas, največ koliko tekočine lahko spravimo skozi tak sistem cevi od izvora do ponora.\\
-
-Sistem cevi predstavimo kot graf, kjer je izvor označen z prvim indeksom in ponor z zadnjim. Nato po nekem algoritmu spreminjamo pretoke skozi cevi ($x_{i,j} \le c_{i,j}$), dokler ne najdemo maksimalnega.
+\\
+Sistem cevi predstavimo kot graf, kjer je izvor označen z prvim indeksom in ponor z zadnjim, nato pa po nekem algoritmu spreminjamo pretoke skozi cevi ($x_{i,j} \le c_{i,j}$), dokler ne najdemo maksimalnega.
 \begin{comment}
 Imamo usmerjen graf z n vozlišči, radi pa bi našli maksimalen pretok od vozlišča 1 (izvor) do ponora(vozlišče n), glede na podane kapacitete povezav . Vozlišča v grafu označimo z zaporednimi številkami, kjer z 1 označimo izvor z n pa ponor,
 pretok med vozliščema $i$ in $j$ pa $x_{i,j}$. Pretok je omejen s kapaciteto $0 \leq x_{i,j} \leq c_{i,j}$\\
@@ -428,7 +431,7 @@ $0 \leq X \leq min(\sum_j {c_{1,j}}, \sum_i {c_{i,n}})$
 \subsection{Ford-Fulkersonov algoritem}
 Ideja algoritma je, da iščemo poti od izvora do ponora, ki še lahko sprejejo več tekočine in povečamo pretok do njih. Če take poti ni moč najti, smo našli optimalen pretok in se algoritem zaključi.\\
 Pravimo, da je celotna pot je zasičena(ima največji možen pretok), če je vsaj ena povezava na njej zasičena, nezasičena pa kadar so vse povezave na njej nezasičene. Povezava je zasičena, ko po njej ne moremo povečati pretoka, torej $x_{i,j}=c_{i,j}$.\\
-
+\\
 Kadar potujemo po pozitivni (pravilno usmerjeni) povezavi, hočemo zagotoviti maksimalen pretok ($x_{i,j} = c_{i,j}$), lahko pa potujemo tudi po negativnih povezavah (obrnjenih proti toku), edina razlika je, da v tem primeru želimo minimalen pretok ($x_{i,j} = 0$).
 %kako povem listingu, naj res vzame kot text? (ne kot GNUplot)
 \lstinputlisting[language=GNUplot, linerange=begin-end, firstnumber=0, title={Psevdokoda Ford-Fulkersonovega algoritma za iskanje maksimalnega pretoka skozi graf}]{./src/maxFlow.txt}
@@ -443,12 +446,12 @@ Bellmanove enačbe pravijo, da je najcenejša pot od vozlišča $i$ do vozlišč
 To izrazimo rekurzivno z Bellmanovimi enačbami:
 \[	u_{i,j} =
 	\left\{
-		\begin{matrix}
-			0 & ; & i = j\\
-			\min \{ u_{i,k} + c_{k,j} \} & ; & sicer\\
-		\end{matrix}
+		\begin{array}{cll}
+			0 &;& i = j,\\
+			\min \{ u_{i,k} + c_{k,j} \} &;& sicer\\
+		\end{array}
 	\right. \]
-Vozlišča $k$ so vsa vozlišča grafa iz katerih je mogoče priti v vozlišče $j$.
+Vozlišča $k$ so vsa vozlišča grafa, iz katerih je mogoče priti v vozlišče $j$.
 
 \begin{comment}
 \section{Preverjanje poravnanosti drevesa}
@@ -505,7 +508,7 @@ Taka metoda za iskanje dobrega približka števila $\pi$ ni najbolj primerna, je
 
 \chapter{Računska geometrija}
 \section{Najbližji par v množici točk}
-Želimo poiskati točki, ki sta si najbližji v neki množici točk. Naivni algoritem bi bil pregled vseh parov, kar bi zahtevalo kvadratno zahtevnost, z boljšimi metodami pa dosežemo zahtevnost $O(n*log(n))$. Spodaj je preprost linesweep algoritem, ki je v večini primerov kar hiter, a ima v najslabšem primeru tudi kvadratno zahtevnost.
+Želimo poiskati točki, ki sta si najbližji v neki množici točk. Naivni algoritem bi bil pregled vseh parov, kar bi zahtevalo kvadratno časovno zahtevnost, z boljšimi metodami pa dosežemo zahtevnost $O(n*log(n))$. Poglejmo preprost linesweep algoritem, ki ima v najboljšem primeru linearno zahtevnost, v najslabšem pa kvadratno.
 
 \lstinputlisting[linerange=begin-end, title={Algoritem za iskanje najbližjega para točk v množici točk}]{./src/closestPair.java}
 %\section{Konveksna ogrinjača množice točk}
