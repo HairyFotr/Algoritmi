@@ -103,7 +103,7 @@
 \ \\[5cm]
 {\resizebox{15cm}{!}{\Huge Algoritmi}}\\[-16pt]
 %{\Huge\bf Teoretične osnove računalništva}\\[1cm]
-{\ \ \ \ \ \huge \today}
+{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \huge \today}
 
 %"random" tikz tagclodud here?
 
@@ -278,7 +278,7 @@ Za praštevila velja:\\
 	\[\varphi(p) = p-1\]
 Za potence praštevil velja:\\
 	\[\varphi(p^m) = p^m - p^{m-1}\]
-Za tuji števili a in b velja:\\
+Za tuji števili $a$ in $b$ velja:\\
 	\[\varphi(a*b) = \varphi(a)*\varphi(b)\]
 
 %Ideja za preprost algoritem: Razcep na praštevila, odštevanje 1 in množenje
@@ -412,7 +412,7 @@ Graf formalno podamo kot par vozlišč $V$ in povezav $E$ med vozlišči: $G=\la
 
 \section{Eulerjev in Hamiltonov graf}
 \subsection{Eulerjev graf}
-Graf je Eulerjev, kadar vsebuje Eulerjev cikel -- tak sprehod, ki vsako povezavo uporabi natanko enkrat in se na koncu vrne v izhodišče. Multigraf je nadgradnja navadnih grafov s tem, da dovolimo več vzporednih povezav med dvema vozliščema in dovolimo tudi povezave vozlišč samih vase. Tudi multigraf je lahko Eulerjev.
+Graf je Eulerjev, kadar vsebuje Eulerjev cikel -- tak sprehod, ki vsako povezavo uporabi natanko enkrat in se na koncu vrne v izhodišče. Multigraf je nadgradnja navadnih grafov s tem, da dovolimo več vzporednih povezav med dvema vozliščema in dovolimo tudi povezave vozlišč samih vase. Tudi multigraf je lahko Eulerjev. Preden poženemo algoritem lahko preverimo če graf izpolnjuje potrebne pogoje, npr. ali je povezan in ali so vsa vozlišča sode stopnje.
 %\subsubsection{Fleuryjev algoritem za iskanje Eulerjevega cikla}
 \lstinputlisting[language=GNUplot, firstnumber=0, title={Psevdokoda Fleuryjevega algoritma za iskanje Eulerjevega cikla}]{./src/Fleury.txt}
 \subsection{Hamiltonov graf}
