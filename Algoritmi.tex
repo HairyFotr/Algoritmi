@@ -28,6 +28,12 @@
 \graphicspath{{./img/}}
 \DeclareGraphicsExtensions{.eps,.pdf,.png,.jpg}
 
+%prevent chapter pagebreaks
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+\makeatother
+
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
@@ -98,12 +104,13 @@
     linkcolor=black
 }
 \begin{document}
+\begin{comment}
 \begin{titlepage}
 \begin{center}
 \ \\[5cm]
 {\resizebox{15cm}{!}{\Huge Algoritmi}}\\[-16pt]
 %{\Huge\bf Teoretične osnove računalništva}\\[1cm]
-{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \huge \today}
+{\ \ \ \ \ \ \ \ \ \ \ \ \ \huge \today}
 
 %"random" tikz tagclodud here?
 
@@ -120,7 +127,8 @@ This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAl
 \end{titlepage}
 \tableofcontents
 \pagebreak
-\chapter{Pregled metod reševanja}
+\end{comment}
+\chapter{Pregled metod resevanja}
 \section{Deli in vladaj}
 Pri metodi deli in vladaj problem delimo na podprobleme, dokler jih ne znamo rešiti direktno, nato pa te delne rešitve sestavimo v končno rešitev. Navadno je take algoritme najlaže implementirati rekurzivno.\\
  \\
@@ -152,7 +160,7 @@ Pri požrešni metodi se, kadar imamo na voljo večih vej, odločimo za lokalno 
  \\
 Nekaj problemov, ki jih rešujemo s to metodo:\\
 %Pri NP-polnih problemih s požrešnimi algoritmi ne dobimo vedno optimalne rešitve, se ji pa navadno zelo približamo, če uporabljamo pametne hevristike:
-Pri težkih problemih s požrešnimi algoritmi v splošnem ne dobimo optimalne rešitve, se ji pa približamo, če uporabljamo pametne hevristike:
+Pri težkih problemih s požrešnimi algoritmi v splošnem ne dobimo optimalne rešitve, se ji pa lahko približamo, če uporabljamo pametne hevristike:
 \begin{items}
 	\item Problem trgovskega potnika
 	\item Neomejeni problem nahrbtnika
@@ -165,9 +173,10 @@ Obstaja pa precej problemov, kjer lokalno najbolša izbira vodi tudi do končne 
 	\item Izgradnja optimalnega drevesa pri Huffmanovem kodiranju.
 \end{items}
 
-%%ali si razveji in omeji zasluži svoj podnaslov... in kaj je sploh razlika.
-\section{Sestopanje}
-Sestopanje je v osnovi preiskovanje celotnega prostora rešitev, a s pomočjo hevristik lahko včasih odrežemo določene veje, če ugotovimo da tam zagotovo ni rešitve. V najslabšem primeru lahko metoda vseeno preišče celoten prostor rešitev.\\
+%ali si razveji in omeji zasluži svoj podnaslov... in kaj je sploh razlika.
+%http://wiki.answers.com/Q/What_is_Difference_between_backtracking_and_branch_and_bound_method
+\section{Sestopanje in razveji \& omeji}
+Sestopanje je preiskovanje celotnega prostora rešitev in najde vse možne rešitve. S pomočjo hevristik pa lahko včasih odrežemo določene veje, če ugotovimo da tam rešitve zagotovo ni, ali pa če iščemo točno določeno optimalno rešitev. V najslabšem primeru lahko ti metodi vseeno preiščeta celoten prostor rešitev.\\
  \\
 Nekaj problemov, ki jih rešujemo s to metodo:
 \begin{items}
@@ -245,7 +254,9 @@ Predpostavimo, da imamo množico števil, ki vsebuje vsa praštevila $P = \{2,3,
 \subsection{Preprosti algoritem za ugotavljanje praštevilskosti} 
 Algoritem preveri, ali je parameter $a$ deljiv s katerim izmed naravnih števil v intervalu $\left[2, \sqrt{a}\right]$ in če takega števila ni, zaključi, da je $a$ praštevilo. Razlog, zaradi katerega lahko praštevilskost preverimo s tem intervalom (kljub temu, da bi tudi $\frac{a}{2}$ lahko delil $a$), leži v tem, da če je parameter sestavljen, je največji možen razcep na prafaktorje $\sqrt{a}*\sqrt{a}$.
 \lstinputlisting[linerange=begin-end, title={Preprosti algoritem za preverjanje praštevilskosti}]{./src/isPrime.java}
+\begin{comment}%dooooh
 Algoritem je moč nekoliko pohitriti tako, da že pred zanko preverimo ostanek pri deljenju z $2$, nato lahko zanko začnemo s $3$ in števec v vsaki iteraciji povečamo za $2$.\\
+\end{comment}
 % \\
 %\subsection{Miller-Rabinov test}
 %\url{http://en.literateprograms.org/Miller-Rabin_primality_test_(Java)}\\
@@ -255,7 +266,7 @@ Algoritem je moč nekoliko pohitriti tako, da že pred zanko preverimo ostanek p
 %deli s praštevili dokler gre, s 3, s 5, s 7...
 
 \section{Največji skupni delitelj in najmanjši skupni večkratnik}
-Največji skupni delitelj (angl. greatest common divisor (GCD)), je največje naravno število, ki deli vsa dana števila.
+Največji skupni delitelj (angl. greatest common divisor -- GCD), je največje naravno število, ki deli vsa dana števila.
 %Produkt skupnih prafaktorjev, ali
 \subsection{Evklidov algoritem}
 Evklidov algoritem za izračun GCD je verjetno eden najstarejših algoritmov, ki so še vedno v uporabi. Prvi ohranjen zapis je v Evklidovih Elementih\cite{elementi}, že prej pa naj bi bil znan Pitagorejcem. \\
@@ -384,31 +395,15 @@ Algoritem temelji na strategiji deli ni vladaj in sicer deluje tako, da na vsake
 
 %todo interpolation search
 
-\chapter{Matematične in logične igre}
-\section{Hanojski stolpi}
-Hanojski stolpi je igra, ki jo sestavljajo tri palice in nekaj diskov različnih velikosti. Na začetku so diski urejeni od najmanjšega do največjega po velikosti na prvi palici, cilj igre pa je premakniti vse diske s prve palice na drugo, pri čemer ne moremo položiti večjega diska na manjšega in s palice lahko dvignemo le zgornji disk.
-
-\begin{center}
-\includegraphics[width=77mm]{towersOfHanoi}
-\end{center}
-
-\subsection{Najmanjše število premikov glede na število diskov}
-Če hočemo iz začetnega položaja premakniti prvi(zgornji) disk, to lahko storimo z enim premikom, če pa želimo premakniti disk pod njim, moramo najprej premakniti prvega, šele nato drugega. Po teh dveh premikih je za nadaljevanje igre potrebno eno palico sprostiti, kar dosežemo s premikom prvega diska na drugega - skupaj trije premiki. Če bi iz začetnega položaja želeli premakniti tretji disk, bi najprej s tremi premiki premaknili prva dva diska na tretjo palico, tretji disk na drugo palico, potem pa spet s tremi premiki prvi in drugi disk na drugo palico - skupaj sedem premikov. Za premik četrtega diska pa bi najprej premaknili prve tri, nato četrtega in prve tri na četrtega - petnajst premikov.%\\
-% \\
-%Algoritem za izračun najmanjšega števila premikov je zelo preprost, ga je pa bolje kot z očitno rekurzijo, implementirati z uporabo dinamičnega programiranja:
-\lstinputlisting[linerange=begin-end, title={Algoritem za izračun najmanšega števila premikov pri igri Hanojski stolpi}]{./src/towersOfHanoiMoves.java}
-
-\subsection{Rekurzivni algoritem za reševanje igre Hanojski stolpi}
-Algoritem pokličemo s številom diskov, nato pa algoritem v vsakem klicu opravi tri stvari:
-\begin{items}
-	\item rekurzivno premakne vse manjše diske na eno od palic
-	\item premakne trenutni disk
-	\item rekurzivno premakne vse manjše diske na trenutni disk
-\end{items}
-\lstinputlisting[linerange=begin-end, title={Rekurzivni algoritem za reševanje igre Hanojski stolpi}]{./src/towersOfHanoi.java}
-
 \chapter{Grafi}
-Graf formalno podamo kot par vozlišč $V$ in povezav $E$ med vozlišči: $G=\langle V, E \rangle$. Tudi v programih lahko uporabimo tak zapis, ampak so ponavadi bolj ugodni drugi zapisi, npr. seznam sosednosti (za vsako vozlišče imamo seznam povezanih vozlišč), ali pa matriko sosednosti (kvadratna matrika vozlišč, ki ima 1 kjer povezava obstaja in 0, kjer je ni).
+Graf formalno podamo kot dvojček vozlišč $V$ in povezav $E$ med vozlišči: $G=\langle V, E \rangle$.\\
+Navadno porabimo enega od naslednjih zapisov grafov:
+\begin{items}
+\item \textbf{Seznam sosednosti} -- za vsako vozlišče hranimo seznam povezanih vozlišč (omogoča hrambo dodatnih podatkov v vozliščih)
+\item \textbf{Seznam pojavnosti} -- za vsako vozlišče hranimo seznam njegovih povezav in za vsako povezavo njen seznam vozlišč (omogoča hrambo dodatnih podatkov v vozliščih in na povezavah)
+\item \textbf{Matrika sosednosti} -- kvadratna matrika vozlišč, kjer $M_{i,j} \neq 0$ pomeni povezavo med vozliščema $v_i$ in $v_j$. (omogoča hrambo ene vrednosti na povezavah)
+\item \textbf{Matrika pojavnosti} -- matrika vozlišč, kjer $M_{i,j} \neq 0$ pomeni povezavo med vozliščem $v_i$ in povezavo $e_j$. (omogoča hrambo ene vrednosti na povezavah)
+\end{items}
 
 \section{Eulerjev in Hamiltonov graf}
 \subsection{Eulerjev graf}
@@ -442,6 +437,11 @@ Kadar potujemo po pozitivni (pravilno usmerjeni) povezavi, hočemo zagotoviti ma
 \lstinputlisting[language=GNUplot, linerange=begin-end, firstnumber=0, title={Psevdokoda algoritma za topološko urejanje grafa}]{./src/topologicalSorting.txt}
 
 \section{Iskanje najcenejših poti}
+\subsection{Dijsktrov algoritem}
+Algoritem najde najcenejšo pot iz nekega začetnega vozlišča, do vseh ostalih vozlišč v grafu.
+
+\lstinputlisting[language=GNUplot, linerange=begin-end, firstnumber=0, title={Psevdokoda Dijkstovega algoritma za iskanje najcenejših poti}]{./src/Dijkstra.txt}
+\begin{comment}
 \subsection{Bellmanove enačbe}
 Bellmanove enačbe pravijo, da je najcenejša pot od vozlišča $i$ do vozlišča $j$, vsota najcenejše poti $u_i,k$ do nekega vozlišča $k$ in cene povezave $c_{k,j}$. Kakšna pa je najcenejša pot do $k$? Spet najdemo neko vozlišče, iz katerega pridemo do $k$ prek ene povezave.\\
 To izrazimo rekurzivno z Bellmanovimi enačbami:
@@ -453,6 +453,7 @@ To izrazimo rekurzivno z Bellmanovimi enačbami:
 		\end{array}
 	\right. \]
 Vozlišča $k$ so vsa vozlišča grafa, iz katerih je mogoče priti v vozlišče $j$.
+\end{comment}
 
 \begin{comment}
 \section{Preverjanje poravnanosti drevesa}
@@ -509,7 +510,7 @@ Taka metoda za iskanje dobrega približka števila $\pi$ ni najbolj primerna, je
 
 \chapter{Računska geometrija}
 \section{Najbližji par v množici točk}
-Želimo poiskati točki, ki sta si najbližji v neki množici točk. Naivni algoritem bi bil pregled vseh parov, kar bi zahtevalo kvadratno časovno zahtevnost, z boljšimi metodami pa dosežemo zahtevnost $O(n*log(n))$. Poglejmo preprost linesweep algoritem, ki ima v najboljšem primeru linearno zahtevnost, v najslabšem pa kvadratno.
+Želimo poiskati točki, ki sta si najbližji v neki množici točk. Naivni algoritem bi bil pregled vseh parov, kar bi zahtevalo kvadratno časovno zahtevnost, z boljšimi metodami pa dosežemo zahtevnost $O(n*log(n))$. Poglejmo preprost algoritem s pometanjem, ki ima v najboljšem primeru linearno zahtevnost, v najslabšem pa kvadratno.
 
 \lstinputlisting[linerange=begin-end, title={Algoritem za iskanje najbližjega para točk v množici točk}]{./src/closestPair.java}
 %\section{Konveksna ogrinjača množice točk}
@@ -536,9 +537,33 @@ Taka metoda za iskanje dobrega približka števila $\pi$ ni najbolj primerna, je
 
 \end{comment}
 
-\chapter{Varnostno kodiranje}
+%\chapter{Varnostno kodiranje}
 %\section{Hammingovo kodiranje}
 %\lstinputlisting[linerange=begin-end, title={Algoritem za izračun Hammingovih varnostnih bitov}]{./src/Ham.java}
+
+\chapter{Random stuff}
+%\chapter{Matematične in logične igre}
+\section{Hanojski stolpi}
+Hanojski stolpi je igra, ki jo sestavljajo tri palice in nekaj diskov različnih velikosti. Na začetku so diski urejeni od najmanjšega do največjega po velikosti na prvi palici, cilj igre pa je premakniti vse diske s prve palice na drugo, pri čemer ne moremo položiti večjega diska na manjšega in s palice lahko dvignemo le zgornji disk.
+
+\begin{center}
+\includegraphics[width=77mm]{towersOfHanoi}
+\end{center}
+
+\subsection{Najmanjše število premikov glede na število diskov}
+Če hočemo iz začetnega položaja premakniti prvi(zgornji) disk, to lahko storimo z enim premikom, če pa želimo premakniti disk pod njim, moramo najprej premakniti prvega, šele nato drugega. Po teh dveh premikih je za nadaljevanje igre potrebno eno palico sprostiti, kar dosežemo s premikom prvega diska na drugega - skupaj trije premiki. Če bi iz začetnega položaja želeli premakniti tretji disk, bi najprej s tremi premiki premaknili prva dva diska na tretjo palico, tretji disk na drugo palico, potem pa spet s tremi premiki prvi in drugi disk na drugo palico - skupaj sedem premikov. Za premik četrtega diska pa bi najprej premaknili prve tri, nato četrtega in prve tri na četrtega - petnajst premikov. Splošna formula za število premikov je: moves $= 2^n - 1$%\\
+% \\
+%Algoritem za izračun najmanjšega števila premikov je zelo preprost, ga je pa bolje kot z očitno rekurzijo, implementirati z uporabo dinamičnega programiranja:
+%\lstinputlisting[linerange=begin-end, title={Algoritem za izračun najmanšega števila premikov pri igri Hanojski stolpi}]{./src/towersOfHanoiMoves.java}
+
+\subsection{Rekurzivni algoritem za reševanje igre Hanojski stolpi}
+Algoritem pokličemo s številom diskov, nato pa algoritem v vsakem klicu opravi tri stvari:
+\begin{items}
+	\item rekurzivno premakne vse manjše diske na eno od palic
+	\item premakne trenutni disk
+	\item rekurzivno premakne vse manjše diske na trenutni disk
+\end{items}
+\lstinputlisting[linerange=begin-end, title={Rekurzivni algoritem za reševanje igre Hanojski stolpi}]{./src/towersOfHanoi.java}
 
 \section{CRC kodiranje}
 Pri CRC(Cyclic Redundancy Check) varnostnem kodiranju zaporedje bitov, delimo z vnaprej znanim zaporedjem bitov t.i. polinomom. Rezultat ki ga iščemo je ostanek po deljenju.
@@ -546,8 +571,8 @@ Pri CRC(Cyclic Redundancy Check) varnostnem kodiranju zaporedje bitov, delimo z 
 %prvi bit polinoma mora biti 1, i guess, morda še kaj
 \lstinputlisting[linerange=begin-end, title={Algoritem za izračun CRC varnostnih bitov}]{./src/CRC.java}
 
-\chapter{Obdelava nizov}
-\section{Levenshteinova razdalja}
+%\chapter{Obdelava nizov}
+\section{Levenshteinova razdalja med nizi}
 Levenshteinova razdalja je mera podobnosti nizov, ki jo izračunamo kot najmanjše število določenih urejanj, po katerih pridemo od enega niza do drugega.\\
 \ \\
 Vrste urejanj so:

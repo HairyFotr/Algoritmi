@@ -28,3 +28,4 @@ img/*.pdf
 .dropbox
 *.ini
 
+*.class

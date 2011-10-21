@@ -1,4 +1,5 @@
-Izberi zaèetno vozlišèe
-Preèkaj poljubno povezavo, z izjemo mostu, ki ga izberemo le, èe ni boljše izbire
-Izbrano povezavo odstrani, èe je bil odstranjen most, odstrani še vse toèke, ki so ostale izolirane
-Konèaj, èe ni veè povezav, sicer ponovi
+izberi zaèetno vozlišèe
+preèkaj poljubno povezavo in jo odstrani (tu most preèkamo le èe ni boljše izbire)
+èe je bil odstranjen most, odstrani vse toèke ki so ostale izolirane
+èe je še kaka povezava, pojdi na 1
+sicer zakljuèi algoritem.
