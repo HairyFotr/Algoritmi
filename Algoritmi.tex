@@ -104,7 +104,7 @@
     linkcolor=black
 }
 \begin{document}
-\begin{comment}
+%\begin{comment}
 \begin{titlepage}
 \begin{center}
 \ \\[5cm]
@@ -127,7 +127,8 @@ This work is licensed under a Creative Commons Attribution-NonCommercial-ShareAl
 \end{titlepage}
 \tableofcontents
 \pagebreak
-\end{comment}
+%\end{comment}
+\begin{comment}.
 \chapter{Pregled metod resevanja}
 \section{Deli in vladaj}
 Pri metodi deli in vladaj problem delimo na podprobleme, dokler jih ne znamo rešiti direktno, nato pa te delne rešitve sestavimo v končno rešitev. Navadno je take algoritme najlaže implementirati rekurzivno.\\
@@ -176,7 +177,7 @@ Obstaja pa precej problemov, kjer lokalno najbolša izbira vodi tudi do končne 
 %ali si razveji in omeji zasluži svoj podnaslov... in kaj je sploh razlika.
 %http://wiki.answers.com/Q/What_is_Difference_between_backtracking_and_branch_and_bound_method
 \section{Sestopanje in razveji \& omeji}
-Sestopanje je preiskovanje celotnega prostora rešitev in najde vse možne rešitve. S pomočjo hevristik pa lahko včasih odrežemo določene veje, če ugotovimo da tam rešitve zagotovo ni, ali pa če iščemo točno določeno optimalno rešitev. V najslabšem primeru lahko ti metodi vseeno preiščeta celoten prostor rešitev.\\
+Sestopanje je preiskovanje celotnega prostora rešitev in najde vse možne rešitve. S pomočjo hevristik pa lahko včasih odrežemo določene veje, če ugotovimo da tam rešitve zagotovo ni, ali pa če iščemo neko bolj točno določeno rešitev. V najslabšem primeru lahko ti metodi vseeno preiščeta celoten prostor rešitev.\\
  \\
 Nekaj problemov, ki jih rešujemo s to metodo:
 \begin{items}
@@ -222,21 +223,31 @@ Pogoji izpeljani iz porabe in omejitev:
 Kriterijska funkcija:
 \[max(x_1*4000 + x_2*5000 + x_3*4500) \mbox{ (Dobiček)}\]
 Sedaj imamo na levi strani neenačb linearno kombinacijo porabe glede na izbrano žito, na desni kmetove omejitve, v kriterijski funkciji pa kmetov dobiček, ki ga želimo maksimizirati.
-\end{comment}
 \subsection{Simpleksni algoritem}
 Algoritem rešuje linearne programe tako, da se sprehaja po ogljiščih konveksne poliederske množice (KPM), ki jo tvori presek danih neenačb (v 2D je KPM konveksen poligon, v 3D polieder, \dots). Pri sprehajanju se vedno premikamo le proti boljšim rešitvam, če to v nekem ogljišču ni možno, pa smo dosegli maksimum in se algoritem ustavi.
 
 Predpostavlja se, da začenjamo iz koordinatnega izhodišča ($\forall x_i = 0$), kadar pa izhodišče ne pripada KPM, koordinatni sistem ustrezno preslikamo (premik, vrtenje, zrcaljenje, \dots).
+\efnd{comment}
 %Write only what you know.. :D
 %Če ne najdemo ustrezne preslikave, lahko poiščemo neko nek presek enačb, ki je ogljišče KPM (), ali pa lik razrežemo in algoritem poženemo na delčkih.
 
 %Časovna zahtevnost algoritma je v najslabšem primeru eksponentna, v praksi pa se algoritem dobro obnese, saj se sprehaja le po ogljiščih KPM in zazna, ko prispe v maksimum kriterijske funkcije.
 % \\
 %%TODO: Psevdokoda/Implementacija :P
+\end{comment}
+\chapter{Podatkovne strukture}
+\section{Dvojno-povezan seznam}
+\lstinputlisting[linerange=begin-end, title={Dvojno-povezan seznam}]{./src/LinkedList.java}
+\section{Binarno drevo}
+\lstinputlisting[linerange=begin-end, title={Binarno drevo}]{./src/BinaryTree.java}
+\section{Ulomki}
+\lstinputlisting[linerange=begin-end, title={Ulomki}]{./src/Fractions.java}
 
-\chapter{Teorija števil}
+
+\chapter{Teorija stevil}
 
 \section{Praštevila}
+\begin{comment}.
 Praštevila so naravna števila, ki so deljiva le z $1$ in sama s seboj. Ostalim naravnim številom, razen $1$, pravimo sestavljena števila, saj jih je moč sestaviti kot produkt praštevil.\\
 \\
 Kot je dokazal že Evklid\cite{elementi}, obstaja neskončno praštevil. Uporabimo preprost dokaz z protislovjem.
@@ -253,6 +264,7 @@ Predpostavimo, da imamo množico števil, ki vsebuje vsa praštevila $P = \{2,3,
 \end{array}\]
 \subsection{Preprosti algoritem za ugotavljanje praštevilskosti} 
 Algoritem preveri, ali je parameter $a$ deljiv s katerim izmed naravnih števil v intervalu $\left[2, \sqrt{a}\right]$ in če takega števila ni, zaključi, da je $a$ praštevilo. Razlog, zaradi katerega lahko praštevilskost preverimo s tem intervalom (kljub temu, da bi tudi $\frac{a}{2}$ lahko delil $a$), leži v tem, da če je parameter sestavljen, je največji možen razcep na prafaktorje $\sqrt{a}*\sqrt{a}$.
+\end{comment}
 \lstinputlisting[linerange=begin-end, title={Preprosti algoritem za preverjanje praštevilskosti}]{./src/isPrime.java}
 \begin{comment}%dooooh
 Algoritem je moč nekoliko pohitriti tako, da že pred zanko preverimo ostanek pri deljenju z $2$, nato lahko zanko začnemo s $3$ in števec v vsaki iteraciji povečamo za $2$.\\
@@ -266,18 +278,22 @@ Algoritem je moč nekoliko pohitriti tako, da že pred zanko preverimo ostanek p
 %deli s praštevili dokler gre, s 3, s 5, s 7...
 
 \section{Največji skupni delitelj in najmanjši skupni večkratnik}
+\subsection{Evklidov algoritem}
+\begin{comment}.
 Največji skupni delitelj (angl. greatest common divisor -- GCD), je največje naravno število, ki deli vsa dana števila.
 %Produkt skupnih prafaktorjev, ali
 \subsection{Evklidov algoritem}
 Evklidov algoritem za izračun GCD je verjetno eden najstarejših algoritmov, ki so še vedno v uporabi. Prvi ohranjen zapis je v Evklidovih Elementih\cite{elementi}, že prej pa naj bi bil znan Pitagorejcem. \\
 \\
 Algoritem temelji na ugotovitvi, da se GCD ne spremeni, če od večjega števila odštejemo manjšega. Če to odštevanje ponavljamo, dokler ena izmed spremenljivk ne doseže 0, je vrednost druge spremenljivke ravno GCD. Kasneje so ugotovili, da isto velja tudi za ostanek po deljenju, le da je potrebno precej manj korakov za izračun, zato raje uporabljamo ta način.
-
+\end{comment}
 \lstinputlisting[linerange=begin-end, title={Evklidov algoritem za iskanje največjega skupnega delitelja}]{./src/GCD.java}
 \subsection{Najmanjši skupni večkratnik}
+\begin{comment}.
 Najmanjši skupni večkratnik (angl. least common multiple (LCM)) je najmanjše naravno število, ki je večkratnik danih naravnih števil.\\
 %Produkt prafaktorjev, ki nastopajo v enem ali obeh številih,ali\\
 Lahko ga izračunamo iz največjega skupnega delitelja po preprosti formuli:
+\end{comment}
 \[ \operatorname{lcm(a,b)}={a*b \over \operatorname{gcd}(a,b)}\]
 %\lstinputlisting[linerange=begin-end, title={Algoritem za iskanje najmanjšega skupnega večkratnika}]{./src/LCM.java}
 
@@ -295,6 +311,7 @@ Za tuji števili $a$ in $b$ velja:\\
 %Ideja za preprost algoritem: Razcep na praštevila, odštevanje 1 in množenje
 \end{comment}
 \section{Fibonaccijevo zaporedje}
+\begin{comment}.
 Fibonacci je eden izmed najbolj znanih srednjeveških matematikov, ki je, med drugim, pisal tudi o zaporedju, ki je kasneje dobilo ime po njem\cite{liberabaci}. Zaporedje je predstavil na primeru idealizirane rasti populacije zajcev:\\
 Recimo, da vsak par zajcev živi dve sezoni in vsako sezono ustvari en par potomcev. Imamo neko pokrajino, kjer zajcev še ni in začnemo z enim mladim parom in nato vsako sezono preštejemo nove pare. Čez eno sezono imamo en nov par, v drugi sezoni imajo potomce prva in druga generacija, tako da imamo dva nova para, hkrati pa prva generacija odmre. Naslednjo sezono imamo tri nove pare, umre pa druga generacija. Preostali pari ustvarijo pet novih parov, umre tretja generacija\dots\\
 Vidimo, da je število potomcev v resnici enako velikosti zadnjih dveh generacij.\\
@@ -345,8 +362,10 @@ Rekurzivno enačbo za Fibonaccijevo zaporedje $k$-tega reda zapišemo zapišemo 
 	\right. \]
 \subsection{Algoritem za izračun prvih $n$ členov Fibonaccijevega zaporedja}
 Pri tem algoritmu najprej nastavimo prvih $k-1$ členov na nič in $k$-tega na ena, nato pa nove člene izračunamo kot vsoto zadnjih $k$ členov zaporedja.
+\end{comment}
 \lstinputlisting[linerange=begin-end, title={Algoritem za izračun prvih $n$ števil Fibonaccijevega zaporedja reda $k$}]{./src/Fib.java}
 
+\begin{comment}.
 \subsection{Algoritem za ugotavljanje pripadnosti števila Fibonaccijevemu zaporedju}
 Algoritem računa člene Fibonaccijevega zaporedja $k$-tega reda in se ustavi, ko naleti na člen, ki je večji ali enak podanemu parametru. Pri računanju potrebujemo le zadnjih $k$ členov, ki pa bi jih bilo dobro hraniti tako, da nam ne bi bilo treba kakorkoli premetavati elementov tabele. Tu lahko uporabimo krožno tabelo, ki jo lahko simuliramo z navadno tabelo, če elemente naslavljamo po modulu velikosti tabele. Za izračun novega elementa bi lahko vedno znova računali vsoto vseh elementov, a to ni potrebno, saj je pri Fibonaccijevem zaporedju naslednji člen na položaju $i$ v tabeli mogoče preprosto izračunati:\\
 \[\begin{array}{l}
@@ -367,7 +386,7 @@ Na primeru Fibonaccijevega zaporedja tretjega reda računamo tako:
 	$7$ $13$ $\underline{24}$ & $24$ & $44$\\
 \end{tabular}
 \end{center}
-
+\end{comment}
 \lstinputlisting[linerange=begin-end, title={Algoritem za preverjanje, ali je število del Fibonaccijevega zaporedja reda k}]{./src/isFib.java}
 \begin{comment}
 \chapter{Urejanje podatkov}
@@ -388,41 +407,44 @@ Algoritem doda prvi element v urejeni del tabele, nato pa se iterativno premika 
 
 \chapter{Iskalni algoritmi}
 \section{Binarno iskanje}
+\begin{comment}.
 Binarno iskanje je učinkovit algoritem za iskanje v urejeni tabeli.\\
 Algoritem temelji na strategiji deli ni vladaj in sicer deluje tako, da na vsakem koraku razpolovi velikost intervala tabele, v katerem išče. To stori tako, da primerja element na sredini intervala, s ključem, ki se išče. Če je sredinski element manjši od ključa, naslednik sredinskega elementa v tabeli postane nova spodnja meja, če je sredinski element večji od ključa, pa je naslednik sredinskega elementa v tabeli nova zgornja meja. Iskanje se zaključi, ko naletimo na element, ki je enak ključu, če takega elementa v tabeli ni, pa se iskanje zaključi, ko se zgornja in spodnja meja intervala preiskovanja prekrijeta.
-
+\end{comment}
 \lstinputlisting[linerange=begin-end, title={Algoritem binarnega iskanja oz. bisekcije v urejeni tabeli}]{./src/binarySearch.java}
 
 %todo interpolation search
 
 \chapter{Grafi}
 Graf formalno podamo kot dvojček vozlišč $V$ in povezav $E$ med vozlišči: $G=\langle V, E \rangle$.\\
-Navadno porabimo enega od naslednjih zapisov grafov:
+Navadno uporabimo enega od naslednjih zapisov grafov:
 \begin{items}
 \item \textbf{Seznam sosednosti} -- za vsako vozlišče hranimo seznam povezanih vozlišč (omogoča hrambo dodatnih podatkov v vozliščih)
 \item \textbf{Seznam pojavnosti} -- za vsako vozlišče hranimo seznam njegovih povezav in za vsako povezavo njen seznam vozlišč (omogoča hrambo dodatnih podatkov v vozliščih in na povezavah)
 \item \textbf{Matrika sosednosti} -- kvadratna matrika vozlišč, kjer $M_{i,j} \neq 0$ pomeni povezavo med vozliščema $v_i$ in $v_j$. (omogoča hrambo ene vrednosti na povezavah)
-\item \textbf{Matrika pojavnosti} -- matrika vozlišč, kjer $M_{i,j} \neq 0$ pomeni povezavo med vozliščem $v_i$ in povezavo $e_j$. (omogoča hrambo ene vrednosti na povezavah)
+\item \textbf{Matrika pojavnosti} -- matrika vozlišč, kjer $M_{i,j} \neq 0$ pomeni da ima vozlišče $v_i$ povezavo $e_j$. (omogoča hrambo ene vrednosti na obeh koncih povezave)
 \end{items}
 
 \section{Eulerjev in Hamiltonov graf}
 \subsection{Eulerjev graf}
-Graf je Eulerjev, kadar vsebuje Eulerjev cikel -- tak sprehod, ki vsako povezavo uporabi natanko enkrat in se na koncu vrne v izhodišče. Multigraf je nadgradnja navadnih grafov s tem, da dovolimo več vzporednih povezav med dvema vozliščema in dovolimo tudi povezave vozlišč samih vase. Tudi multigraf je lahko Eulerjev. Preden poženemo algoritem lahko preverimo če graf izpolnjuje potrebne pogoje, npr. ali je povezan in ali so vsa vozlišča sode stopnje.
-%\subsubsection{Fleuryjev algoritem za iskanje Eulerjevega cikla}
+Graf je Eulerjev, kadar vsebuje Eulerjev cikel -- tak sprehod, ki vsako povezavo uporabi natanko enkrat in se na koncu vrne v izhodišče. \begin{comment}.
+Multigraf je nadgradnja navadnih grafov s tem, da dovolimo več vzporednih povezav med dvema vozliščema in dovolimo tudi povezave vozlišč samih vase. Tudi multigraf je lahko Eulerjev. Preden poženemo algoritem lahko preverimo če graf izpolnjuje potrebne pogoje, npr. ali je povezan in ali so vsa vozlišča sode stopnje.\end{comment}
+
 \lstinputlisting[language=GNUplot, firstnumber=0, title={Psevdokoda Fleuryjevega algoritma za iskanje Eulerjevega cikla}]{./src/Fleury.txt}
 \subsection{Hamiltonov graf}
 Graf je Hamiltonov, kadar vsebuje Hamiltonov cikel -- tak sprehod, ki vsako vozlišče obišče natanko enkrat in se na koncu vrne v izhodišče.
 
 \section{Iskanje maksimalnega pretoka skozi graf}
+\begin{comment}.
 Predstavljamo si, da imamo nek vir tekočine, ki teče v razvejan sistem cevi, v katerem ima vsaka cev določen maksimalen pretok tekočine ($c_{i,j}$), ki ga lahko prenese med dvema točkama. Vsaka cev se steka v neko točko in iz vsake točke lahko naprej vodi več cevi. Tu seveda velja pravilo, da iz vsakega vozlišča odteka enako tekočine kot vanjo pride (tekočina se ne more nikjer zadrževati). Sistem ima poleg izvora tekočine tudi t.i ponor, kamor se tekočina na koncu izteka. Zanima nas, največ koliko tekočine lahko spravimo skozi tak sistem cevi od izvora do ponora.\\
 \\
 Sistem cevi predstavimo kot graf, kjer je izvor označen z prvim indeksom in ponor z zadnjim, nato pa po nekem algoritmu spreminjamo pretoke skozi cevi ($x_{i,j} \le c_{i,j}$), dokler ne najdemo maksimalnega.
-\begin{comment}
+\beagin{comment}
 Imamo usmerjen graf z n vozlišči, radi pa bi našli maksimalen pretok od vozlišča 1 (izvor) do ponora(vozlišče n), glede na podane kapacitete povezav . Vozlišča v grafu označimo z zaporednimi številkami, kjer z 1 označimo izvor z n pa ponor,
 pretok med vozliščema $i$ in $j$ pa $x_{i,j}$. Pretok je omejen s kapaciteto $0 \leq x_{i,j} \leq c_{i,j}$\\
 Takoj vidimo, da je skupni pretok skozi graf $X$, navzgor omejen s kapacitetami povezav iz izvora in tudi vsot kapacitet povezav do ponora:
 $0 \leq X \leq min(\sum_j {c_{1,j}}, \sum_i {c_{i,n}})$
-\end{comment}
+\enad{comment}
 
 \subsection{Ford-Fulkersonov algoritem}
 Ideja algoritma je, da iščemo poti od izvora do ponora, ki še lahko sprejejo več tekočine in povečamo pretok do njih. Če take poti ni moč najti, smo našli optimalen pretok in se algoritem zaključi.\\
@@ -430,16 +452,21 @@ Pravimo, da je celotna pot je zasičena(ima največji možen pretok), če je vsa
 \\
 Kadar potujemo po pozitivni (pravilno usmerjeni) povezavi, hočemo zagotoviti maksimalen pretok ($x_{i,j} = c_{i,j}$), lahko pa potujemo tudi po negativnih povezavah (obrnjenih proti toku), edina razlika je, da v tem primeru želimo minimalen pretok ($x_{i,j} = 0$).
 %kako povem listingu, naj res vzame kot text? (ne kot GNUplot)
+\end{comment}
+
 \lstinputlisting[language=GNUplot, linerange=begin-end, firstnumber=0, title={Psevdokoda Ford-Fulkersonovega algoritma za iskanje maksimalnega pretoka skozi graf}]{./src/maxFlow.txt}
 
 \section{Topološko urejanje}
+\begin{comment}.
 Če je usmerjen graf acikličen ga je moč urediti tako, da vozlišče z nižjo oznako vedno kaže le na vozlišča z višjimi oznakami. Tej ureditivi pravimo topološka ureditev. 
+\end{comment}
 \lstinputlisting[language=GNUplot, linerange=begin-end, firstnumber=0, title={Psevdokoda algoritma za topološko urejanje grafa}]{./src/topologicalSorting.txt}
 
 \section{Iskanje najcenejših poti}
 \subsection{Dijsktrov algoritem}
+\begin{comment}.
 Algoritem najde najcenejšo pot iz nekega začetnega vozlišča, do vseh ostalih vozlišč v grafu.
-
+\end{comment}
 \lstinputlisting[language=GNUplot, linerange=begin-end, firstnumber=0, title={Psevdokoda Dijkstovega algoritma za iskanje najcenejših poti}]{./src/Dijkstra.txt}
 \begin{comment}
 \subsection{Bellmanove enačbe}
@@ -461,7 +488,7 @@ Za drevo rečemo, da je levo-poravnano, če je levo poddrevo polno, desnemu podd
 CODEDUMP :)
 \lstinputlisting[linerange=begin-end, title={Algoritem za preverjanje leve poravnanosti binarnih dreves}]{./src/drevesa.java}
 \end{comment}
-
+\begin{comment}.
 \chapter{Kombinatorika in verjetnost}
 %%TODO: nauči se in spiši vse osnovne kombinatorične naloge :)
 \section{Permutacije}
@@ -474,7 +501,7 @@ V koordinatnem izhodišču narišemo krog s polmerom $1$ in kvadrat s stranico $
 
 \begin{center}
 	\includegraphics[width=35mm]{MonteCarloPi}
-	\begin{comment}
+	\begidn{comment}
 	\begin{tikzpicture}[draw, scale=1.2, vertex/.style={circle,draw,fill=black,inner sep=0.5pt}]
 		\draw (0, -1.4) [->] to (0, 1.4);
 		\draw (-1.4, 0) [->] to (1.4, 0);
@@ -499,7 +526,7 @@ V koordinatnem izhodišču narišemo krog s polmerom $1$ in kvadrat s stranico $
 		}
 		%}
 	\end{tikzpicture}
-	\end{comment}
+	\endd{comment}
 \end{center}
 
 \lstinputlisting[linerange=begin-end, title={Algoritem za izračun približka števila $\pi$ po metodi Monte Carlo}]{./src/MonteCarloPi.java}
@@ -507,12 +534,14 @@ Taka metoda za iskanje dobrega približka števila $\pi$ ni najbolj primerna, je
 %Glej tudi:\\
 %\url{http://www.chem.unl.edu/zeng/joy/mclab/mcintro.html}\\
 %\url{www-lp.fmf.uni-lj.si/plestenjak/vaje/Nm/Gradivo/SeminarMC.pdf}
-
+\end{comment}
 \chapter{Računska geometrija}
 \section{Najbližji par v množici točk}
+\begin{comment}.
 Želimo poiskati točki, ki sta si najbližji v neki množici točk. Naivni algoritem bi bil pregled vseh parov, kar bi zahtevalo kvadratno časovno zahtevnost, z boljšimi metodami pa dosežemo zahtevnost $O(n*log(n))$. Poglejmo preprost algoritem s pometanjem, ki ima v najboljšem primeru linearno zahtevnost, v najslabšem pa kvadratno.
+\end{comment}
 
-\lstinputlisting[linerange=begin-end, title={Algoritem za iskanje najbližjega para točk v množici točk}]{./src/closestPair.java}
+\lstinputlisting[linerange=begin-end, title={Preprost algoritem za iskanje najbližjega para točk v množici točk s pometanjem}]{./src/closestPair.java}
 %\section{Konveksna ogrinjača množice točk}
 %CODEDUMP :)
 %\lstinputlisting[linerange=begin-end, title={Algoritem za iskanje konveksne ogrinjače množice točk}]{./src/convexHull.java}
@@ -543,7 +572,11 @@ Taka metoda za iskanje dobrega približka števila $\pi$ ni najbolj primerna, je
 
 \chapter{Random stuff}
 %\chapter{Matematične in logične igre}
+\section{Možne vsote podmnožic}%from icpc
+\lstinputlisting[linerange=begin-end, title={Algoritem za izračun vseh možnih vsot podmnožic neke množice}]{./src/SubsetSum.java}
+
 \section{Hanojski stolpi}
+\begin{comment}.
 Hanojski stolpi je igra, ki jo sestavljajo tri palice in nekaj diskov različnih velikosti. Na začetku so diski urejeni od najmanjšega do največjega po velikosti na prvi palici, cilj igre pa je premakniti vse diske s prve palice na drugo, pri čemer ne moremo položiti večjega diska na manjšega in s palice lahko dvignemo le zgornji disk.
 
 \begin{center}
@@ -563,28 +596,35 @@ Algoritem pokličemo s številom diskov, nato pa algoritem v vsakem klicu opravi
 	\item premakne trenutni disk
 	\item rekurzivno premakne vse manjše diske na trenutni disk
 \end{items}
+\end{comment}
 \lstinputlisting[linerange=begin-end, title={Rekurzivni algoritem za reševanje igre Hanojski stolpi}]{./src/towersOfHanoi.java}
 
-\section{CRC kodiranje}
+\section{CRC varnostno kodiranje}
+\begin{comment}.
 Pri CRC(Cyclic Redundancy Check) varnostnem kodiranju zaporedje bitov, delimo z vnaprej znanim zaporedjem bitov t.i. polinomom. Rezultat ki ga iščemo je ostanek po deljenju.
+\end{comment}
 
 %prvi bit polinoma mora biti 1, i guess, morda še kaj
 \lstinputlisting[linerange=begin-end, title={Algoritem za izračun CRC varnostnih bitov}]{./src/CRC.java}
 
 %\chapter{Obdelava nizov}
 \section{Levenshteinova razdalja med nizi}
+\begin{comment}.
 Levenshteinova razdalja je mera podobnosti nizov, ki jo izračunamo kot najmanjše število določenih urejanj, po katerih pridemo od enega niza do drugega.\\
 \ \\
+\end{comment}
 Vrste urejanj so:
 \begin{items}
 \item brisanje znaka: $d_L("aaa", "aa") = 1$
 \item vstavljanje znaka: $d_L("aaa", "aaaa") = 1$
 \item spremembo znaka: $d_L("aaa", "aba") = 1$
 \end{items}
+\begin{comment}.
 Primer:
 \begin{items}
 \item dve spremembi in vstavljanje: $d_L("Burek", "Baraka") = 3$
 \end{items}
+\end{comment}
 
 \lstinputlisting[linerange=begin-end, title={Algoritem za izračun Levensteinove razdalje med dvema nizoma}]{./src/LevensteinDistance.java}
 \begin{comment}
