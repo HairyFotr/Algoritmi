@@ -59,17 +59,11 @@
 	commentstyle={\sffamily \color[rgb]{0,0.5,0}},
 	stringstyle=\color[rgb]{0.5,0,1},
 	keywordstyle=\color[rgb]{0,0,1},
-	classoffset=0,
 	%barvanje kode
-	language=Java,
-	deletekeywords={true,false},
-	deletekeywords={byte,short,int,long,float,double,char,boolean,void},
-	classoffset=1,
-	morekeywords={byte,short,int,long,float,double,char,boolean,void},
-	keywordstyle=\color[rgb]{0.5,0,1},
+	language=Python,
 	%iz source datotek potegnemo tisto med //@begin@ ...koda... //@end@
-	rangeprefix=//@,
-	rangesuffix=@,
+	rangeprefix={\#@},
+	rangesuffix={@},
 	linerange=begin-end,
 	includerangemarker=false,
 	%lomljenje predolgih vrstic
@@ -363,7 +357,7 @@ Rekurzivno enačbo za Fibonaccijevo zaporedje $k$-tega reda zapišemo zapišemo 
 \subsection{Algoritem za izračun prvih $n$ členov Fibonaccijevega zaporedja}
 Pri tem algoritmu najprej nastavimo prvih $k-1$ členov na nič in $k$-tega na ena, nato pa nove člene izračunamo kot vsoto zadnjih $k$ členov zaporedja.
 \end{comment}
-\lstinputlisting[linerange=begin-end, title={Algoritem za izračun prvih $n$ števil Fibonaccijevega zaporedja reda $k$}]{./src/Fib.java}
+\lstinputlisting[linerange=begin-end, title={Algoritem za izračun $n$-tega števila Fibonaccijevega zaporedja reda $k$}]{./src/fib.py}
 
 \begin{comment}.
 \subsection{Algoritem za ugotavljanje pripadnosti števila Fibonaccijevemu zaporedju}
@@ -387,7 +381,6 @@ Na primeru Fibonaccijevega zaporedja tretjega reda računamo tako:
 \end{tabular}
 \end{center}
 \end{comment}
-\lstinputlisting[linerange=begin-end, title={Algoritem za preverjanje, ali je število del Fibonaccijevega zaporedja reda k}]{./src/isFib.java}
 \begin{comment}
 \chapter{Urejanje podatkov}
 Algoritmi za urejanje služijo urejanju vrstnega reda elementov v tabeli glede na neko relacijo med elementi oz. ključi elementov.
@@ -454,20 +447,20 @@ Kadar potujemo po pozitivni (pravilno usmerjeni) povezavi, hočemo zagotoviti ma
 %kako povem listingu, naj res vzame kot text? (ne kot GNUplot)
 \end{comment}
 
-\lstinputlisting[language=GNUplot, linerange=begin-end, firstnumber=0, title={Psevdokoda Ford-Fulkersonovega algoritma za iskanje maksimalnega pretoka skozi graf}]{./src/maxFlow.txt}
+\lstinputlisting[language=GNUplot, firstnumber=0, title={Psevdokoda Ford-Fulkersonovega algoritma za iskanje maksimalnega pretoka skozi graf}]{./src/maxFlow.txt}
 
 \section{Topološko urejanje}
 \begin{comment}.
 Če je usmerjen graf acikličen ga je moč urediti tako, da vozlišče z nižjo oznako vedno kaže le na vozlišča z višjimi oznakami. Tej ureditivi pravimo topološka ureditev. 
 \end{comment}
-\lstinputlisting[language=GNUplot, linerange=begin-end, firstnumber=0, title={Psevdokoda algoritma za topološko urejanje grafa}]{./src/topologicalSorting.txt}
+\lstinputlisting[language=GNUplot, firstnumber=0, title={Psevdokoda algoritma za topološko urejanje grafa}]{./src/topologicalSorting.txt}
 
 \section{Iskanje najcenejših poti}
 \subsection{Dijsktrov algoritem}
 \begin{comment}.
 Algoritem najde najcenejšo pot iz nekega začetnega vozlišča, do vseh ostalih vozlišč v grafu.
 \end{comment}
-\lstinputlisting[language=GNUplot, linerange=begin-end, firstnumber=0, title={Psevdokoda Dijkstovega algoritma za iskanje najcenejših poti}]{./src/Dijkstra.txt}
+\lstinputlisting[language=GNUplot, firstnumber=0, title={Psevdokoda Dijkstovega algoritma za iskanje najcenejših poti}]{./src/Dijkstra.txt}
 \begin{comment}
 \subsection{Bellmanove enačbe}
 Bellmanove enačbe pravijo, da je najcenejša pot od vozlišča $i$ do vozlišča $j$, vsota najcenejše poti $u_i,k$ do nekega vozlišča $k$ in cene povezave $c_{k,j}$. Kakšna pa je najcenejša pot do $k$? Spet najdemo neko vozlišče, iz katerega pridemo do $k$ prek ene povezave.\\

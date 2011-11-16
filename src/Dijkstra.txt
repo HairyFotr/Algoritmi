@@ -1,4 +1,3 @@
-//@begin@
 izberi zaèetno vozlišèe, oznaèi ga kot obiskanjega in nastavi njegovo trenutno razdaljo na 0
 ostala vozlišèa oznaèi kot neobiskana, nastavi trenutne razdalje na neskonèno in jih dodaj v vrsto neobiskanih
 izraèunaj dolžine poti od izbranega vozlišèa do neobiskanih sosedov
@@ -6,4 +5,3 @@ izraèunaj dolžine poti od izbranega vozlišèa do neobiskanih sosedov
 izbrano vozlišèe oznaèi kot obiskano in ga odstrani iz vrste neobiskanih (razdalja do tu je že minimalna)
 èe vrsta neobiskanih ni prazna, izberi vozlišèe z najmanjšo trenutno razdaljo in pojdi na 3
 sicer zakljuèi algoritem.
-//@end@
