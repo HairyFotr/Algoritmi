@@ -1,5 +1,3 @@
-#/bin/sh
-#@begin@
 #red 2
 memo = {0:0, 1:1}
 def fib(n):
@@ -15,4 +13,3 @@ def fib(n,k):
     if not n in memok[k]:
         memok[k][n] = sum([fib(n-i-1, k) for i in range(k)])
     return memok[k][n]
-#@end@
