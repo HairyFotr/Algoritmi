@@ -14,17 +14,8 @@
 \usepackage[utf8x]{inputenc}
 
 \usepackage{ifpdf}
-\ifpdf
-	\usepackage{graphicx}
-	\usepackage{epstopdf}
-	\epstopdfsetup{
-		outdir={./img/}
-	}
-	\epstopdfsetup{suffix=}
-	\DeclareGraphicsRule{.eps}{pdf}{.pdf}{`epstopdf --gsopt=-dEPSCrop #1}
-\else
-	\usepackage{graphicx}
-\fi
+\usepackage{graphicx}
+\usepackage{epstopdf}
 \graphicspath{{./img/}}
 \DeclareGraphicsExtensions{.eps,.pdf,.png,.jpg}
 
@@ -62,10 +53,10 @@
 	%barvanje kode
 	language=Python,
 	%iz source datotek potegnemo tisto med //@begin@ ...koda... //@end@
-	rangeprefix={\#@},
-	rangesuffix={@},
-	linerange=begin-end,
-	includerangemarker=false,
+	%rangeprefix={\#@},
+	%rangesuffix={@},
+	%linerange=begin-end,
+	%includerangemarker=false,
 	%lomljenje predolgih vrstic
 	breaklines=true,
 	prebreak=\raisebox{0ex}[0ex][0ex]{\ensuremath{\hookleftarrow}},
@@ -230,12 +221,10 @@ Predpostavlja se, da začenjamo iz koordinatnega izhodišča ($\forall x_i = 0$)
 %%TODO: Psevdokoda/Implementacija :P
 \end{comment}
 \chapter{Podatkovne strukture}
-\section{Dvojno-povezan seznam}
-\lstinputlisting[linerange=begin-end, title={Dvojno-povezan seznam}]{./src/LinkedList.java}
 \section{Binarno drevo}
-\lstinputlisting[linerange=begin-end, title={Binarno drevo}]{./src/BinaryTree.java}
+\lstinputlisting[title={Binarno drevo}]{./src/binarytree.py}
 \section{Ulomki}
-\lstinputlisting[linerange=begin-end, title={Ulomki}]{./src/Fractions.java}
+\lstinputlisting[title={Ulomki}]{./src/fractions.py}
 
 
 \chapter{Teorija stevil}
@@ -259,7 +248,7 @@ Predpostavimo, da imamo množico števil, ki vsebuje vsa praštevila $P = \{2,3,
 \subsection{Preprosti algoritem za ugotavljanje praštevilskosti} 
 Algoritem preveri, ali je parameter $a$ deljiv s katerim izmed naravnih števil v intervalu $\left[2, \sqrt{a}\right]$ in če takega števila ni, zaključi, da je $a$ praštevilo. Razlog, zaradi katerega lahko praštevilskost preverimo s tem intervalom (kljub temu, da bi tudi $\frac{a}{2}$ lahko delil $a$), leži v tem, da če je parameter sestavljen, je največji možen razcep na prafaktorje $\sqrt{a}*\sqrt{a}$.
 \end{comment}
-\lstinputlisting[linerange=begin-end, title={Preprosti algoritem za preverjanje praštevilskosti}]{./src/isPrime.java}
+\lstinputlisting[title={Preprosti algoritem za preverjanje praštevilskosti}]{./src/prime.py}
 \begin{comment}%dooooh
 Algoritem je moč nekoliko pohitriti tako, da že pred zanko preverimo ostanek pri deljenju z $2$, nato lahko zanko začnemo s $3$ in števec v vsaki iteraciji povečamo za $2$.\\
 \end{comment}
@@ -281,15 +270,7 @@ Evklidov algoritem za izračun GCD je verjetno eden najstarejših algoritmov, ki
 \\
 Algoritem temelji na ugotovitvi, da se GCD ne spremeni, če od večjega števila odštejemo manjšega. Če to odštevanje ponavljamo, dokler ena izmed spremenljivk ne doseže 0, je vrednost druge spremenljivke ravno GCD. Kasneje so ugotovili, da isto velja tudi za ostanek po deljenju, le da je potrebno precej manj korakov za izračun, zato raje uporabljamo ta način.
 \end{comment}
-\lstinputlisting[linerange=begin-end, title={Evklidov algoritem za iskanje največjega skupnega delitelja}]{./src/GCD.java}
-\subsection{Najmanjši skupni večkratnik}
-\begin{comment}.
-Najmanjši skupni večkratnik (angl. least common multiple (LCM)) je najmanjše naravno število, ki je večkratnik danih naravnih števil.\\
-%Produkt prafaktorjev, ki nastopajo v enem ali obeh številih,ali\\
-Lahko ga izračunamo iz največjega skupnega delitelja po preprosti formuli:
-\end{comment}
-\[ \operatorname{lcm(a,b)}={a*b \over \operatorname{gcd}(a,b)}\]
-%\lstinputlisting[linerange=begin-end, title={Algoritem za iskanje najmanjšega skupnega večkratnika}]{./src/LCM.java}
+\lstinputlisting[title={Evklidov algoritem za iskanje največjega skupnega delitelja}]{./src/GCD.py}
 
 \begin{comment}
 \section{Eulerjeva funkcija $\varphi$}
@@ -357,7 +338,7 @@ Rekurzivno enačbo za Fibonaccijevo zaporedje $k$-tega reda zapišemo zapišemo 
 \subsection{Algoritem za izračun prvih $n$ členov Fibonaccijevega zaporedja}
 Pri tem algoritmu najprej nastavimo prvih $k-1$ členov na nič in $k$-tega na ena, nato pa nove člene izračunamo kot vsoto zadnjih $k$ členov zaporedja.
 \end{comment}
-\lstinputlisting[title={Algoritem za izračun $n$-tega števila Fibonaccijevega zaporedja reda $k$}]{./src/fib.py}
+\lstinputlisting[title={Algoritem za izračun $n$-tega števila Fibonaccijevega zaporedja}]{./src/fib.py}
 
 \begin{comment}.
 \subsection{Algoritem za ugotavljanje pripadnosti števila Fibonaccijevemu zaporedju}
@@ -404,7 +385,7 @@ Algoritem doda prvi element v urejeni del tabele, nato pa se iterativno premika 
 Binarno iskanje je učinkovit algoritem za iskanje v urejeni tabeli.\\
 Algoritem temelji na strategiji deli ni vladaj in sicer deluje tako, da na vsakem koraku razpolovi velikost intervala tabele, v katerem išče. To stori tako, da primerja element na sredini intervala, s ključem, ki se išče. Če je sredinski element manjši od ključa, naslednik sredinskega elementa v tabeli postane nova spodnja meja, če je sredinski element večji od ključa, pa je naslednik sredinskega elementa v tabeli nova zgornja meja. Iskanje se zaključi, ko naletimo na element, ki je enak ključu, če takega elementa v tabeli ni, pa se iskanje zaključi, ko se zgornja in spodnja meja intervala preiskovanja prekrijeta.
 \end{comment}
-\lstinputlisting[linerange=begin-end, title={Algoritem binarnega iskanja oz. bisekcije v urejeni tabeli}]{./src/binarySearch.java}
+\lstinputlisting[title={Algoritem binarnega iskanja oz. bisekcije v urejeni tabeli}]{./src/binarysearch.py}
 
 %todo interpolation search
 
@@ -564,82 +545,9 @@ Taka metoda za iskanje dobrega približka števila $\pi$ ni najbolj primerna, je
 %\lstinputlisting[linerange=begin-end, title={Algoritem za izračun Hammingovih varnostnih bitov}]{./src/Ham.java}
 
 \chapter{Random stuff}
-%\chapter{Matematične in logične igre}
 \section{Reševanje enačb}
 \lstinputlisting[title={Algoritem za reševanje linearnih enačb}]{./src/solve.py}
 
-\section{Možne vsote podmnožic}%from icpc
-\lstinputlisting[linerange=begin-end, title={Algoritem za izračun vseh možnih vsot podmnožic neke množice}]{./src/SubsetSum.java}
 
-\section{Hanojski stolpi}
-\begin{comment}.
-Hanojski stolpi je igra, ki jo sestavljajo tri palice in nekaj diskov različnih velikosti. Na začetku so diski urejeni od najmanjšega do največjega po velikosti na prvi palici, cilj igre pa je premakniti vse diske s prve palice na drugo, pri čemer ne moremo položiti večjega diska na manjšega in s palice lahko dvignemo le zgornji disk.
-
-\begin{center}
-\includegraphics[width=77mm]{towersOfHanoi}
-\end{center}
-
-\subsection{Najmanjše število premikov glede na število diskov}
-Če hočemo iz začetnega položaja premakniti prvi(zgornji) disk, to lahko storimo z enim premikom, če pa želimo premakniti disk pod njim, moramo najprej premakniti prvega, šele nato drugega. Po teh dveh premikih je za nadaljevanje igre potrebno eno palico sprostiti, kar dosežemo s premikom prvega diska na drugega - skupaj trije premiki. Če bi iz začetnega položaja želeli premakniti tretji disk, bi najprej s tremi premiki premaknili prva dva diska na tretjo palico, tretji disk na drugo palico, potem pa spet s tremi premiki prvi in drugi disk na drugo palico - skupaj sedem premikov. Za premik četrtega diska pa bi najprej premaknili prve tri, nato četrtega in prve tri na četrtega - petnajst premikov. Splošna formula za število premikov je: moves $= 2^n - 1$%\\
-% \\
-%Algoritem za izračun najmanjšega števila premikov je zelo preprost, ga je pa bolje kot z očitno rekurzijo, implementirati z uporabo dinamičnega programiranja:
-%\lstinputlisting[linerange=begin-end, title={Algoritem za izračun najmanšega števila premikov pri igri Hanojski stolpi}]{./src/towersOfHanoiMoves.java}
-
-\subsection{Rekurzivni algoritem za reševanje igre Hanojski stolpi}
-Algoritem pokličemo s številom diskov, nato pa algoritem v vsakem klicu opravi tri stvari:
-\begin{items}
-	\item rekurzivno premakne vse manjše diske na eno od palic
-	\item premakne trenutni disk
-	\item rekurzivno premakne vse manjše diske na trenutni disk
-\end{items}
-\end{comment}
-\lstinputlisting[linerange=begin-end, title={Rekurzivni algoritem za reševanje igre Hanojski stolpi}]{./src/towersOfHanoi.java}
-
-\section{CRC varnostno kodiranje}
-\begin{comment}.
-Pri CRC(Cyclic Redundancy Check) varnostnem kodiranju zaporedje bitov, delimo z vnaprej znanim zaporedjem bitov t.i. polinomom. Rezultat ki ga iščemo je ostanek po deljenju.
-\end{comment}
-
-%prvi bit polinoma mora biti 1, i guess, morda še kaj
-\lstinputlisting[linerange=begin-end, title={Algoritem za izračun CRC varnostnih bitov}]{./src/CRC.java}
-
-%\chapter{Obdelava nizov}
-\section{Levenshteinova razdalja med nizi}
-\begin{comment}.
-Levenshteinova razdalja je mera podobnosti nizov, ki jo izračunamo kot najmanjše število določenih urejanj, po katerih pridemo od enega niza do drugega.\\
-\ \\
-\end{comment}
-Vrste urejanj so:
-\begin{items}
-\item brisanje znaka: $d_L("aaa", "aa") = 1$
-\item vstavljanje znaka: $d_L("aaa", "aaaa") = 1$
-\item spremembo znaka: $d_L("aaa", "aba") = 1$
-\end{items}
-\begin{comment}.
-Primer:
-\begin{items}
-\item dve spremembi in vstavljanje: $d_L("Burek", "Baraka") = 3$
-\end{items}
-\end{comment}
-
-\lstinputlisting[linerange=begin-end, title={Algoritem za izračun Levensteinove razdalje med dvema nizoma}]{./src/LevensteinDistance.java}
-\begin{comment}
-\section{Skupine anagramov}
-Program najde in izpiše vse skupine anagramov, v katerih je anagramov več od podane meje.\\
-Primer za vhod 9 na angleškem slovarju:\\
-9: [anestri, antsier, nastier, ratines, retains, retinas, retsina, stainer, stearin]\\
-9: [capers, crapes, escarp, pacers, parsec, recaps, scrape, secpar, spacer]\\
-9: [palest, palets, pastel, petals, plates, pleats, septal, staple, tepals]\\
-11: [alerts, alters, artels, estral, laster, ratels, salter, slater, staler, stelar, talers]\\
-9: [estrin, inerts, insert, inters, niters, nitres, sinter, triens, trines]\\
-10: [least, setal, slate, stale, steal, stela, taels, tales, teals, tesla]\\
-12: [apers, apres, asper, pares, parse, pears, prase, presa, rapes, reaps, spare, spear]\\
-CODEDUMP :)
-\lstinputlisting{./src/Anagrami.java}
-\end{comment}
-
-%bibtex
-%\bibliographystyle{ieeetr}
-%\bibliography{algoritmi}
 
 \end{document}

@@ -9,7 +9,7 @@ def fib(n):
 memok = {}
 def fib(n,k):
     if not k in memok:
-        memok[k] = dict(zip(range(k), [0 for i in range(k-1)]+[1]))
+        memok[k] = dict(zip(range(k), [0]*(k-1)+[1]))
     if not n in memok[k]:
         memok[k][n] = sum([fib(n-i-1, k) for i in range(k)])
     return memok[k][n]
