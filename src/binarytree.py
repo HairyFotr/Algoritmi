@@ -7,35 +7,26 @@ class Node:
     def insert(self, val):
         cmp = val-self.val
         if cmp < 0:
-            if self.l is None:
-                self.l = Node(val, parent = self)
-            else:
-                self.l.insert(val)
+            if self.l is None: self.l = Node(val, parent = self)
+            else:              self.l.insert(val)
         elif cmp > 0:
-            if self.r is None:
-                self.r = Node(val, parent = self)
-            else:
-                self.r.insert(val)
+            if self.r is None: self.r = Node(val, parent = self)
+            else:              self.r.insert(val)
         else:
             return
     
     def contains(self, val):
         cmp = val-self.val
         if cmp < 0:
-            if self.l is None: 
-                return False
-            else: 
-                return self.l.contains(val)
+            if self.l is None: return False
+            else:              return self.l.contains(val)
         elif cmp > 0:
-            if self.r is None: 
-                return False
-            else:
-                return self.r.contains(val)
+            if self.r is None: return False
+            else:              return self.r.contains(val)
         else:
             return True
             
-    def getRoot(self): 
-        return self if self.parent is None else self.parent.getRoot()
+    def getRoot(self): return self if self.parent is None else self.parent.getRoot()
     
     def getDepth(self, d = 0):
         return max(
@@ -45,8 +36,8 @@ class Node:
     
     def getElts(self, out = []):  
         out.append(self.val)
-        if not self.l is None: out = getElts(self.l, out)
-        if not self.r is None: out = getElts(self.r, out)
+        if not self.l is None: self.l.getElts(out)
+        if not self.r is None: self.r.getElts(out)
         return out
 
     def __str__(self):
