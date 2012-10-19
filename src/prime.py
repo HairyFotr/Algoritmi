@@ -1,15 +1,12 @@
-def primes(n):
-    def prime(i, primes):
-        for prime in primeSet:
-            if not (i == prime or i % prime):
-                return False
-        primes.add(i)
-        return i
-    primeSet = set([2])
-    i, p = 2, 0
-    while True:
-        if prime(i, primeSet):
-            p += 1
-            if p == n:
-                return primeSet
+def getPrimes(limit, primes = [2,3,7]):
+    '''Memoized prime generator'''
+    i = primes[-1] + 1
+    while i < limit:
+        for prime in primes:
+            if prime > i/2: continue
+            if i % prime == 0:
+                break
+        else: primes.append(i)
         i += 1
+    
+    return primes

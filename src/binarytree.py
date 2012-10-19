@@ -1,32 +1,62 @@
+from math import *
+
 class Node:
-    def __init__(self,val,l=None,r=None,parent=None):
+    def __init__(self, val, l = None, r = None, parent = None):
         self.val, self.l, self.r, self.parent = val, l, r, parent
         
-    def insert(self,val):
+    def insert(self, val):
         cmp = val-self.val
-        if cmp==0: return
-        elif cmp<0:
-            if self.l==None: self.l=Node(val, parent=self)
-            else: self.l.insert(val)
+        if cmp < 0:
+            if self.l is None:
+                self.l = Node(val, parent = self)
+            else:
+                self.l.insert(val)
+        elif cmp > 0:
+            if self.r is None:
+                self.r = Node(val, parent = self)
+            else:
+                self.r.insert(val)
         else:
-            if self.r==None: self.r=Node(val, parent=self)
-            else: self.r.insert(val)
+            return
     
-    def contains(self,val):
+    def contains(self, val):
         cmp = val-self.val
-        if cmp==0: return True
-        elif cmp<0:
-            if self.l==None: return False
-            else: return self.l.contains(val)
+        if cmp < 0:
+            if self.l is None: 
+                return False
+            else: 
+                return self.l.contains(val)
+        elif cmp > 0:
+            if self.r is None: 
+                return False
+            else:
+                return self.r.contains(val)
         else:
-            if self.r==None: return False
-            else: return self.r.contains(val)
+            return True
+            
+    def getRoot(self): 
+        return self if self.parent is None else self.parent.getRoot()
     
-    def treeString(self):
+    def getDepth(self, d = 0):
+        return max(
+            d if self.l is None else self.l.getDepth(d+1),
+            d if self.r is None else self.r.getDepth(d+1)
+        )
+    
+    def getElts(self, out = []):  
+        out.append(self.val)
+        if not self.l is None: out = getElts(self.l, out)
+        if not self.r is None: out = getElts(self.r, out)
+        return out
+
+    def __str__(self):
         return ('(' +
-            ('_' if self.l==None else self.l.treeString()) +
+            ('_' if self.l is None else str(self.l)) +
             ',' +
             str(self.val) +
             ',' +
-            ('_' if self.r==None else self.r.treeString()) +
+            ('_' if self.r is None else str(self.r)) +
             ')')
+    
+    
+    
